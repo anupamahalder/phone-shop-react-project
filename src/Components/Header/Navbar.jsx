@@ -10,7 +10,7 @@ const Navbar = () => {
                     <NavLink
                         to="/"
                         className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "text-blue-600 underline" : ""
+                            isPending ? "pending" : isActive ? "text-[#db2777] underline" : ""
                         }
                         >
                         <h1 className="p-2 font-semibold">Home</h1>
@@ -20,7 +20,7 @@ const Navbar = () => {
                     <NavLink
                         to="/favorites"
                         className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "text-blue-600 underline" : ""
+                            isPending ? "pending" : isActive ? "text-[#db2777] underline" : ""
                         }
                         >
                         <h1 className="p-2 font-semibold">Favorites</h1>
@@ -30,7 +30,7 @@ const Navbar = () => {
                     <NavLink
                         to="/login"
                         className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "text-blue-600 underline" : ""
+                            isPending ? "pending" : isActive ? "text-[#db2777] underline" : ""
                         }
                         >
                         <h1 className="p-2 font-semibold">Login</h1>
