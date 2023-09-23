@@ -1,6 +1,27 @@
 import { createBrowserRouter } from "react-router-dom";
+import MainLayout from "../Layout/MainLayout";
+import Home from "../Pages/Home";
 
-const myCreatedRoute = createBrowserRouter() 
+//The createBrowserRouter function takes array of object
+const myCreatedRoute = createBrowserRouter([
+    //Each object mainly takes two things path and element
+    {
+        path: "/",//default path is home path
+        // MainLayout is our parent element which will be fixed for each child element 
+        element: <div>
+            <MainLayout></MainLayout>
+            {/* To see the children  */}
+            {/* <Outlet></Outlet> */}
+        </div>,
+        //Children will also take array of object as Outlet
+        children: [
+            {
+                path: "/",
+                element: <Home></Home>
+            }
+        ]
+    }
+]) 
 
 
 export default myCreatedRoute;
