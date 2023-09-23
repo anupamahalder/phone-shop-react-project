@@ -1,7 +1,7 @@
 
 const Favorites = () => {
     return (
-        <div>
+        <div className="h-screen">
             <h1>Favorites</h1>
         </div>
     );
