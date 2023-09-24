@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
+import swal from 'sweetalert';
+
 const PhoneCardCompo = ({phone}) => {
     //destructuring phone object
-    const {phone_name, brand_name, image, price} = phone || {}
+    const {id, phone_name, brand_name, image, price} = phone || {}
 
     // function to store phone data in local storage
     const handleAddToFavorite = () =>{
@@ -18,8 +20,27 @@ const PhoneCardCompo = ({phone}) => {
         //if get favoriteItems then we will do something if not then do another thing
         if(!favoriteItems){ //if favoriteItems not found then we will set key pair for initially
             addedFavoriteItem.push(phone);
+            swal("Good job!", "Product added successfully!", "success");
+            // alert('added!');
             //now save the array into the local storage
-            localStorage.setItem('favItems',JSON.stringify(addedFavoriteItem))
+            localStorage.setItem('favItems',JSON.stringify(addedFavoriteItem));
+        }
+        else{
+            //when atleast one item is there in local storage
+
+            //checking if item already has taken or not
+            const isExists = favoriteItems.find(phone => phone.id === id);
+            // console.log(isExists);
+            if(!isExists){
+                //now add items with previous items that was in the local storage
+                addedFavoriteItem.push(...favoriteItems,phone)
+                //now set to local storage
+                localStorage.setItem('favItems',JSON.stringify(addedFavoriteItem));
+            }
+            else{
+                // alert('added!');
+                swal("", "Product already added!", "error");
+            }
         }
 
         //now we want to save this phone 's information in local storage
