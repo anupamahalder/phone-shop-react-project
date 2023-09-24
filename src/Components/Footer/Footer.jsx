@@ -11,7 +11,7 @@ const Footer = () => {
                     
                     <Link to="/favorites"><p className="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-pink-500 focus:text-pink-500">Favorites</p></Link>
                     
-                    <Link to="../../Pages/Home"><p className="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-pink-500 focus:text-pink-500">Contact Us</p></Link>
+                    <Link to="/"><p className="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-pink-500 focus:text-pink-500">Contact Us</p></Link>
                 </ul>
             </footer>
         </div>
