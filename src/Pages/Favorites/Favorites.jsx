@@ -1,7 +1,7 @@
 
 const Favorites = () => {
     return (
-        <div className="h-screen">
+        <div className="min-h-[80vh] bg-gray-50">
             <h1>Favorites</h1>
         </div>
     );

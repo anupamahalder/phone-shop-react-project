@@ -1,10 +1,37 @@
 import PropTypes from 'prop-types';
 const PhoneCardCompo = ({phone}) => {
     //destructuring phone object
-    const {id, phone_name, brand_name, image, price, rating} = phone || {};
+    const {phone_name, brand_name, image, price} = phone || {}
+
+    // function to store phone data in local storage
+    const handleAddToFavorite = () =>{
+        // console.log(phone);
+
+        //declare an array to store phone data in local storage each time
+        const addedFavoriteItem = [];//initially it will be an empty array
+        
+
+        //to get the data from local storage and the getItem() method take only one parameter which is the name of key
+        //and parse data to get original
+        const favoriteItems = JSON.parse(localStorage.getItem('favItems'));
+        // console.log(favoriteItems);
+        //if get favoriteItems then we will do something if not then do another thing
+        if(!favoriteItems){ //if favoriteItems not found then we will set key pair for initially
+            addedFavoriteItem.push(phone);
+            //now save the array into the local storage
+            localStorage.setItem('favItems',JSON.stringify(addedFavoriteItem))
+        }
+
+        //now we want to save this phone 's information in local storage
+        //local storage like an object which has a function named setItem()
+        //setItem() receives two paramaters 1st is name of the storing data 2nd is value
+        // and value has to be stringified 
+        // localStorage.setItem('favItems', JSON.stringify([{name:'anu'},{name:'ph'}]))
+    }
+
     return (
         <div>
-            <div className="relative flex w-full max-w-[48rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+            <div className="relative flex w-full max-w-[48rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md py-6">
                 <div className="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
                     <img
                     src={image}
@@ -20,11 +47,14 @@ const PhoneCardCompo = ({phone}) => {
                     {phone_name}
                     </h4>
                     <a className="inline-block" href="#">
-                    <p className="mb-8 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
+                    <p className="mb-2 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
                     Experience the future in your hands with our cutting-edge smartphone. Unleash limitless possibilities, from stunning photography to lightning-fast performance. Elevate your life, one tap at a time.
                     </p>
-                    <button
-                        className="flex select-none items-center gap-2 rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-pink-500 transition-all hover:bg-pink-500/10 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    <p className="block font-sans text-base font-bold leading-relaxed text-blue-gray-900 antialiased mb-8">
+                            <span className='font-bold'>Price: </span>${price}
+                        </p>
+                    <button onClick={handleAddToFavorite}
+                        className="flex select-none items-center gap-2 rounded-lg py-3 px-6 text-center align-middle font-sans font-bold uppercase text-pink-500 transition-all hover:bg-pink-500/10 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         type="button"
                     >
                         Add to Favorite
@@ -35,7 +65,7 @@ const PhoneCardCompo = ({phone}) => {
                         strokeWidth="2"
                         stroke="currentColor"
                         aria-hidden="true"
-                        className="h-4 w-4"
+                        className="h-4 w-4 text-2xl"
                         >
                         <path
                             strokeLinecap="round"

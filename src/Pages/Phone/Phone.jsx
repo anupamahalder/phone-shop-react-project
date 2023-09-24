@@ -13,7 +13,7 @@ const Phone = () => {
     // const params = useParams()
     //destructure id 
     const {id} = useParams()
-    console.log(id); //{id: 4}
+    // console.log(id); //{id: 4}
     // after getting id, using find method we can get the object 
     //now we have to get the phones data either using useEffect() or loader in route then useLoaderData()
     const phones = useLoaderData();
@@ -26,7 +26,7 @@ const Phone = () => {
     },[id,phones])//[id,phones,isTrue] //when new id and phones comes then useEffect will be running again, isTrue is set by btn clicked so our data will be rendered again
     // console.log(phone);
     return (
-        <div className="h-[80vh] flex justify-center items-center mx-auto">
+        <div className="h-[80vh] py-10 flex justify-center items-center mx-auto">
             {/* <button onClick={() => setIsTrue(!isTrue)}>Hello btn</button> */}
             <PhoneCardCompo key={phone.id} phone={phone}></PhoneCardCompo>
         </div>
