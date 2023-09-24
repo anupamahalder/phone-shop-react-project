@@ -5,8 +5,12 @@ const MainLayout = () => {
     return (
         <div className="max-w-[1300px] mx-auto">
             <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
+            <div className="py-10">
+                <Outlet></Outlet>
+            </div>
+            <div className="pt-5">
+                <Footer></Footer>
+            </div>
         </div>
     );
 };

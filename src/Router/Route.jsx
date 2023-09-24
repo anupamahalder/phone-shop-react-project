@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import Favorites from "../Pages/Favorites/Favorites";
 import Login from "../Login/Login";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Phone from "../Pages/Phone/Phone";
 //The createBrowserRouter function takes array of object
 const myCreatedRoute = createBrowserRouter([
     //Each object mainly takes two things path and element
@@ -30,6 +31,15 @@ const myCreatedRoute = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                // creating a path dynamically and path has to same as phoneCard has
+                // for showing each phone
+                path: `/phones/:id`,
+                // showing phones detail in a page named phone 
+                element: <Phone></Phone>,
+                // As there is no API to fetch data we will not use loader instead we will use useParams in the <phone> component to get the data or id 
+                loader: () => fetch('./phones_data.json')
             }
         ]
     }

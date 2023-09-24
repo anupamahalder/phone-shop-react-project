@@ -1,7 +1,7 @@
 import PropType from 'prop-types';
 import PhoneCard from './PhoneCard';
 const Phones = ({phones}) => {
-    console.log(phones);
+    // console.log(phones);
     return (
         <div className='bg-gray-50 py-10 mx-auto'>
             <h1 className="text-2xl text-gray-900 font-bold text-center pb-7">All categories phones</h1>
