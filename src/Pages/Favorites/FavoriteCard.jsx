@@ -1,58 +1,13 @@
 import PropTypes from 'prop-types';
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 // import { Link } from 'react-router-dom';
 
 const FavoriteCard = ({phone}) => {
     //destructuring phone object
-    const {id, phone_name, brand_name, image} = phone || {}
-
-    // function to store phone data in local storage
-    const handleRemoveFromFavorite = () =>{
-        // console.log(phone);
-
-        //declare an array to store phone data in local storage each time
-        const addedFavoriteItem = [];//initially it will be an empty array
-        
-
-        //to get the data from local storage and the getItem() method take only one parameter which is the name of key
-        //and parse data to get original
-        const favoriteItems = JSON.parse(localStorage.getItem('favItems'));
-        // console.log(favoriteItems);
-        //if get favoriteItems then we will do something if not then do another thing
-        if(!favoriteItems){ //if favoriteItems not found then we will set key pair for initially
-            addedFavoriteItem.push(phone);
-            swal("Good job!", "Product added successfully!", "success");
-            // alert('added!');
-            //now save the array into the local storage
-            localStorage.setItem('favItems',JSON.stringify(addedFavoriteItem));
-        }
-        else{
-            //when atleast one item is there in local storage
-
-            //checking if item already has taken or not
-            const isExists = favoriteItems.find(phone => phone.id === id);
-            // console.log(isExists);
-            if(!isExists){
-                //now add items with previous items that was in the local storage
-                addedFavoriteItem.push(...favoriteItems,phone)
-                //now set to local storage
-                localStorage.setItem('favItems',JSON.stringify(addedFavoriteItem));
-            }
-            else{
-                // alert('added!');
-                swal("", "Product already added!", "error");
-            }
-        }
-
-        //now we want to save this phone 's information in local storage
-        //local storage like an object which has a function named setItem()
-        //setItem() receives two paramaters 1st is name of the storing data 2nd is value
-        // and value has to be stringified 
-        // localStorage.setItem('favItems', JSON.stringify([{name:'anu'},{name:'ph'}]))
-    }
+    const {phone_name, brand_name, image} = phone || {}
 
     return (
-        <div className='mx-auto mb-8 p-6'>
+        <div className='mx-auto p-6'>
             <div className="relative flex h-[500px] w-80 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                 <div className="relative m-2 h-80 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
                     <img
@@ -71,8 +26,8 @@ const FavoriteCard = ({phone}) => {
                     Experience the future in your hands with our cutting-edge smartphone. Unleash limitless possibilities.
                     </p>
                 </div>
-                <button onClick={handleRemoveFromFavorite}
-                        className="flex select-none items-center gap-2 rounded-lg py-3 pb-10 px-6 text-center align-middle font-sans font-bold uppercase text-pink-500 transition-all hover:bg-pink-500/10 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                <button
+                        className="flex select-none text-xs items-center gap-2 rounded-lg py-3 mb-6 px-6 text-center align-middle font-sans font-bold uppercase text-pink-500 transition-all hover:bg-pink-500/10 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         type="button"
                     >
                         Remove from Favorite
