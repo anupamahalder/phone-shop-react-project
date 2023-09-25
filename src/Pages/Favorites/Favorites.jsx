@@ -9,12 +9,19 @@ const Favorites = () => {
     //we will declare a state for see all button if clicked the true will become false else false become true the value will be maintained by the state
     const [isShowAll, setIsShowAll] = useState(false);
 
+    //declare a state to add array element
+    const [totalPrice, setTotalPrice] = useState(0)
+
     //there can be side effect while getting things from browser so we will use useEffect
     useEffect(() => {
         const favoriteItems = JSON.parse(localStorage.getItem('favItems'));
         //set to favorites if favorite items exist
         if(favoriteItems){
             setFavorites(favoriteItems);
+            //reduce method take 1st parameter as a callback function and 2nd parameter an initial value
+            const total = favoriteItems.reduce((prevalue, currentItem) => prevalue+currentItem.price, 0);
+            // console.log(total);
+            setTotalPrice(total);
         }
         else{
             console.log('No data found!');
@@ -40,6 +47,7 @@ const Favorites = () => {
             {favorites.length > 0 && <button onClick={handleRemoveFromFavorite}
             className="block w-40 mx-auto my-5 select-none rounded-lg bg-pink-500 py-3 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] text-white disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button">Remove All Products</button>}
+            <h1 className="font-semibold px-4 py-2">Total price: {totalPrice}</h1>
         </div>
         <div className="bg-gray-50">
             {/* getting data from local storage  */}
@@ -60,11 +68,11 @@ const Favorites = () => {
             }
             {/* when clicked the button we will change the value of the state using arraow function to set the state*/}
             {
-                <button onClick={() => setIsShowAll(!isShowAll)}
+                favorites.length > 3 ? <button onClick={() => setIsShowAll(!isShowAll)}
                 className="block w-40 mx-auto my-5 select-none rounded-lg bg-pink-500 py-3 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] text-white disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 type="button">
-                    {isShowAll ? "See Less" : "See Less"}
-                </button>
+                    {isShowAll ? "See Less" : "See More"}
+                </button> : ''
             }
         </div>
         </div>

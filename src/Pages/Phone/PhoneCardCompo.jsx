@@ -36,6 +36,7 @@ const PhoneCardCompo = ({phone}) => {
                 addedFavoriteItem.push(...favoriteItems,phone)
                 //now set to local storage
                 localStorage.setItem('favItems',JSON.stringify(addedFavoriteItem));
+                swal("Good job!", "Product added successfully!", "success");
             }
             else{
                 // alert('added!');
