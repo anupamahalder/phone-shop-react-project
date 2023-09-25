@@ -67,7 +67,6 @@ const PhoneCardCompo = ({phone}) => {
                     <h4 className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
                     {phone_name}
                     </h4>
-                    <a className="inline-block" href="#">
                     <p className="mb-2 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
                     Experience the future in your hands with our cutting-edge smartphone. Unleash limitless possibilities, from stunning photography to lightning-fast performance. Elevate your life, one tap at a time.
                     </p>
@@ -95,7 +94,6 @@ const PhoneCardCompo = ({phone}) => {
                         ></path>
                         </svg>
                     </button>
-                    </a>
                 </div>
                 </div>
         </div>
