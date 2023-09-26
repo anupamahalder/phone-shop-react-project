@@ -48,13 +48,13 @@ const Favorites = () => {
             className="block w-40 mx-auto my-5 select-none rounded-lg bg-pink-500 py-3 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] text-white disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button">Remove All Products</button>}
         </div>
-        <div className="bg-gray-50">
+        <div className="">
             {/* getting data from local storage  */}
             {/* Now conditional rendering will be if data found then show favorites if not found then show no data found  */}
             {
                 noFound ? <p className="h-[90vh] flex justify-center items-center text-center p-10 font-semibold text-xl">{noFound}</p>: 
                 <div>
-                    <h1 className="font-semibold px-4 py-2">Total price: {totalPrice}</h1>
+                    <h1 className="font-semibold px-8 py-2">Total price: {totalPrice}</h1>
                     {
                         <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                             {

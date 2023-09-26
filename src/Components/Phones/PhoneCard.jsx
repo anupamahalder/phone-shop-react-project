@@ -6,7 +6,7 @@ const PhoneCard = ({phone}) => {
     const {id, phone_name, brand_name, image, price, rating} = phone || {};
     return (
         <div className='mx-auto mb-8'>
-            <div className="relative flex h-[500px] w-80 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+            <div className="relative flex h-[550px] w-80 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                 <div className="relative m-2 h-80 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
                     <img
                     src={image}
