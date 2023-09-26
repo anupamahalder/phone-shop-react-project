@@ -18,7 +18,7 @@ const Favorites = () => {
         //set to favorites if favorite items exist
         if(favoriteItems){
             setFavorites(favoriteItems);
-            //reduce method take 1st parameter as a callback function and 2nd parameter an initial value
+            //reduce method take 1st parameter as a callback function and 2nd parameter an initial value to add previous value with current value
             const total = favoriteItems.reduce((prevalue, currentItem) => prevalue+currentItem.price, 0);
             // console.log(total);
             setTotalPrice(total);
@@ -47,7 +47,6 @@ const Favorites = () => {
             {favorites.length > 0 && <button onClick={handleRemoveFromFavorite}
             className="block w-40 mx-auto my-5 select-none rounded-lg bg-pink-500 py-3 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] text-white disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button">Remove All Products</button>}
-            <h1 className="font-semibold px-4 py-2">Total price: {totalPrice}</h1>
         </div>
         <div className="bg-gray-50">
             {/* getting data from local storage  */}
@@ -55,6 +54,7 @@ const Favorites = () => {
             {
                 noFound ? <p className="h-[90vh] flex justify-center items-center text-center p-10 font-semibold text-xl">{noFound}</p>: 
                 <div>
+                    <h1 className="font-semibold px-4 py-2">Total price: {totalPrice}</h1>
                     {
                         <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                             {

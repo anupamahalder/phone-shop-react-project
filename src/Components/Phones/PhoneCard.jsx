@@ -1,5 +1,6 @@
 import PropType from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Rating } from '@mui/material';
 const PhoneCard = ({phone}) => {
     //destructure and if object is not found then it will go for empty object
     const {id, phone_name, brand_name, image, price, rating} = phone || {};
@@ -17,9 +18,8 @@ const PhoneCard = ({phone}) => {
                         <p className="block font-sans leading-relaxed font-semibold text-blue-gray-900 antialiased">
                             <span className='font-semibold'>{brand_name}</span>
                         </p>
-                        <p className="block font-sans text-base leading-relaxed text-blue-gray-900 antialiased">
-                            {rating}
-                        </p>
+                        <p className="block font-sans text-base leading-relaxed text-blue-gray-900 antialiased"></p>
+                        <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
                     </div>
                 </div>
                 <div className="px-6 py-2 h-24">
