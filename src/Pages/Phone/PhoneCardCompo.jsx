@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import swal from 'sweetalert';
+// import { Link } from 'react-router-dom';
 
 const PhoneCardCompo = ({phone}) => {
     //destructuring phone object
@@ -54,7 +55,7 @@ const PhoneCardCompo = ({phone}) => {
     return (
         <div>
             <div className="relative flex w-full max-w-[48rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md py-6">
-                <div className="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
+                <div className="relative h-[300px] w-60 mx-auto shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
                     <img
                     src={image}
                     alt="image"
@@ -95,6 +96,12 @@ const PhoneCardCompo = ({phone}) => {
                         ></path>
                         </svg>
                     </button>
+                    {/* <Link to='../'>
+                        <button
+                        className="block w-40 mt-5 select-none rounded-lg bg-[#ec4899] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] text-white disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        type="button"
+                        >Go to Home</button>
+                    </Link> */}
                 </div>
                 </div>
         </div>

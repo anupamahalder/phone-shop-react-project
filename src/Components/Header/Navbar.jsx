@@ -25,7 +25,7 @@ const Navbar = () => {
                                 isPending ? "pending" : isActive ? "text-[#db2777]" : ""
                             }
                             >
-                            <h1 className="md:p-2 font-semibold">Home</h1>
+                            <h1 className="md:p-2 text-lg font-semibold">Home</h1>
                         </NavLink>
                     </li>
                     <li>
@@ -35,7 +35,7 @@ const Navbar = () => {
                                 isPending ? "pending" : isActive ? "text-[#db2777]" : ""
                             }
                             >
-                            <h1 className="md:p-2 font-semibold">Favorites</h1>
+                            <h1 className="md:p-2 text-lg font-semibold">Favorites</h1>
                         </NavLink>
                     </li>
                     <li>
@@ -45,7 +45,7 @@ const Navbar = () => {
                                 isPending ? "pending" : isActive ? "text-[#db2777]" : ""
                             }
                             >
-                            <h1 className="md:p-2 font-semibold">Login</h1>
+                            <h1 className="md:p-2 text-lg font-semibold">Login</h1>
                         </NavLink>
                     </li>
                 </ul>

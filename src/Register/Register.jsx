@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
-const Login = () => {
+const Register = () => {
     return (
         <div className="bg-base-200">
             <div className="hero min-h-screen w-3/4 mx-auto">
                 <div className="hero-content flex flex-col-reverse">
                     <div className="text-center lg:text-bottom">
-                        <p>Do not have account? 
-                        <Link to='/register' className=" text-[#db2777]"> Register</Link></p>
+                        <p>Already have account? 
+                        <Link to='/login' className=" text-[#db2777]"> Login</Link></p>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <div className="card-body">
                         <div className="flex justify-center items-center">
-                            <h1 className="text-3xl bg- font-bold text-[#db2777]">Login now</h1>
+                            <h1 className="text-3xl bg- font-bold text-[#db2777]">Register now</h1>
                         </div>
                         <div className="form-control">
                         <label className="label">
@@ -29,7 +29,7 @@ const Login = () => {
                         </label>
                         </div>
                         <div className="form-control mt-6">
-                        <button className="py-3 font-semibold rounded-xl bg-[#db2777] text-white hover:bg-pink-700">Login</button>
+                        <button className="py-3 font-semibold rounded-xl bg-[#db2777] text-white hover:bg-pink-700">Register</button>
                         </div>
                     </div>
                     </div>
@@ -39,4 +39,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;

@@ -5,6 +5,7 @@ import Favorites from "../Pages/Favorites/Favorites";
 import Login from "../Login/Login";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Phone from "../Pages/Phone/Phone";
+import Register from "../Register/Register";
 //The createBrowserRouter function takes array of object
 const myCreatedRoute = createBrowserRouter([
     //Each object mainly takes two things path and element
@@ -31,6 +32,10 @@ const myCreatedRoute = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
             },
             {
                 // creating a path dynamically and path has to same as phoneCard has

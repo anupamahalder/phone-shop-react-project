@@ -6,8 +6,8 @@ const PhoneCard = ({phone}) => {
     const {id, phone_name, brand_name, image, price, rating} = phone || {};
     return (
         <div className='mx-auto mb-8'>
-            <div className="relative flex h-[550px] w-80 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-                <div className="relative m-2 h-80 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
+            <div className="relative flex w-80 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                <div className="relative h-[300px] w-60 mx-auto m-2 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
                     <img
                     src={image}
                     className="h-full w-full object-cover"
@@ -15,7 +15,7 @@ const PhoneCard = ({phone}) => {
                 </div>
                 <div className="px-6">
                     <div className="flex items-center justify-between">
-                        <p className="block font-sans leading-relaxed font-semibold text-blue-gray-900 antialiased">
+                        <p className="block font-sans leading-relaxed font-semibold text-gray-500 antialiased">
                             <span className='font-semibold'>{brand_name}</span>
                         </p>
                         <p className="block font-sans text-base leading-relaxed text-blue-gray-900 antialiased"></p>
