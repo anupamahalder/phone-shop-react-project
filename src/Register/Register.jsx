@@ -16,7 +16,8 @@ const Register = () => {
         console.log('form submitted!');
         const email = e.target.email.value;
         const password = e.target.password.value;
-        // console.log(email, password);
+        const termsAccepted = e.target.terms.checked;
+        console.log(email, password, termsAccepted);
         //reset error
         setRegisterError('');
         //reset success
@@ -31,12 +32,16 @@ const Register = () => {
             setRegisterError('Password should have atleast one UPPER CASE character!');
             return;
         }
+        else if(!termsAccepted){ //if terms not accepted then do not allow to register
+            setRegisterError('Please accept our terms and conditions!');
+            return;
+        }
         //create user, it a promise so then and catch
         createUserWithEmailAndPassword(auth,email,password)
         // then means success
         .then(result =>{
             const newUser = result.user;
-            setRegisterSuccess('You have registered successfully!')
+            setRegisterSuccess('You have registered successfully!');
             console.log(newUser);
         })
         .catch(error =>{
@@ -75,11 +80,16 @@ const Register = () => {
                             <AiOutlineEye onClick={()=>setShowPassword(!showPassword)} className="absolute cursor-pointer right-11 mt-12"></AiOutlineEye>:
                             <AiOutlineEyeInvisible onClick={()=>setShowPassword(!showPassword)} className="absolute cursor-pointer right-11 mt-12"></AiOutlineEyeInvisible>
                             }
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                            <div className="my-2 flex gap-2 items-center">
+                                {/* terms and conditions checked  */}
+                                <input type="checkbox" name="terms" id="" className="my-1"/>
+                                <label htmlFor="terms" className="text-xs mt-1 text-blue-900"> Accept our Terms & Conditions</label>
+                            </div>
+                            <label className="label mt-2">
+                                <Link to="#" className="label-text-alt link link-hover">Forgot password?</Link>
                             </label>
                             </div>
-                            <div className="form-control mt-6">
+                            <div className="form-control">
                             <button className="py-3 font-semibold rounded-xl bg-[#db2777] text-white hover:bg-pink-700">Register</button>
                             </div>
                         </form>
