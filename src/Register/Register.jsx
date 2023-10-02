@@ -85,11 +85,11 @@ const Register = () => {
                                 <input type="checkbox" name="terms" id="" className="my-1"/>
                                 <label htmlFor="terms" className="text-xs mt-1 text-blue-900"> Accept our Terms & Conditions</label>
                             </div>
-                            <label className="label mt-2">
+                            {/* <label className="label mt-2">
                                 <Link to="#" className="label-text-alt link link-hover">Forgot password?</Link>
-                            </label>
+                            </label> */}
                             </div>
-                            <div className="form-control">
+                            <div className="form-control mt-4">
                             <button className="py-3 font-semibold rounded-xl bg-[#db2777] text-white hover:bg-pink-700">Register</button>
                             </div>
                         </form>
