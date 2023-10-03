@@ -66,7 +66,7 @@ const Login = () => {
         })
     }
     return (
-        <div className="bg-base-200">
+        <div className="bg-base-200 min-h-screen">
             <div className="hero py-10 w-3/4 mx-auto">
                 <div className="hero-content flex flex-col-reverse">
                     <div className="text-center lg:text-bottom">

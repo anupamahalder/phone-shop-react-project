@@ -44,7 +44,6 @@ const PhoneCardCompo = ({phone}) => {
                 swal("", "Product already added!", "error");
             }
         }
-
         //now we want to save this phone 's information in local storage
         //local storage like an object which has a function named setItem()
         //setItem() receives two paramaters 1st is name of the storing data 2nd is value
