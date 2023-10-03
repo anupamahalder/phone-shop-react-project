@@ -12,12 +12,13 @@ const Favorites = () => {
     //declare a state to add array element
     const [totalPrice, setTotalPrice] = useState(0)
 
-    //declare a state to store the local Storage
-    const [localValue, setLocalValue] = useState()
-
     //there can be side effect while getting things from browser so we will use useEffect
     useEffect(() => {
         const favoriteItems = JSON.parse(localStorage.getItem('favItems'));
+        if(favoriteItems.length === 0){
+            setNoFound('No Product Found!');
+            return;
+        }
         //set to favorites if favorite items exist
         if(favoriteItems){
             setFavorites(favoriteItems);
@@ -25,10 +26,6 @@ const Favorites = () => {
             const total = favoriteItems.reduce((prevalue, currentItem) => prevalue+currentItem.price, 0);
             // console.log(total);
             setTotalPrice(total.toFixed(2));
-        }
-        else{
-            console.log('No data found!');
-            setNoFound('No product is found!');
         }
     },[])
 
@@ -41,14 +38,6 @@ const Favorites = () => {
         //also want to see the no product found on screen
         setNoFound('No product is found!');
     }
-    const handleRemoveOneFromFavorite= () => {
-        // console.log("Remove button clicked!");
-        const favoriteItems = JSON.parse(localStorage.getItem('favItems'));
-        if(favoriteItems){
-            setFavorites(favoriteItems);
-        }
-    }
-    console.log(isShowAll);
     return (
         <>
         {/* if the length of favorites are greater than 0 then show a delete btn */}
@@ -69,8 +58,8 @@ const Favorites = () => {
                         <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                             {
                                 //if showAll is true then show all data else conditional rendering and slice to show how many numbers of data we want to show
-                                isShowAll ? favorites.map(phone => <FavoriteCard key={phone.id} phone={phone} handleRemoveOneFromFavorite={handleRemoveOneFromFavorite} handleRemoveFromFavorite={handleRemoveFromFavorite}></FavoriteCard>):
-                                favorites.slice(0,3).map(phone => <FavoriteCard key={phone.id} phone={phone} handleRemoveOneFromFavorite={handleRemoveOneFromFavorite} handleRemoveFromFavorite={handleRemoveFromFavorite}></FavoriteCard>)
+                                isShowAll ? favorites.map(phone => <FavoriteCard key={phone.id} setFavorites={setFavorites} setTotalPrice={setTotalPrice} totalPrice={totalPrice} setNoFound={setNoFound} phone={phone}></FavoriteCard>):
+                                favorites.slice(0,3).map(phone => <FavoriteCard key={phone.id} setFavorites={setFavorites} setTotalPrice={setTotalPrice} setNoFound={setNoFound} totalPrice={totalPrice} phone={phone}></FavoriteCard>)
                             }
                         </div>
                     }

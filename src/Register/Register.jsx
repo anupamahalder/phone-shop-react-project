@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
 import { Link } from "react-router-dom";
 import auth from "../Firebase/firebase.config";
 import { useState } from "react";
@@ -16,6 +16,7 @@ const Register = () => {
         console.log('form submitted!');
         const email = e.target.email.value;
         const password = e.target.password.value;
+        const name = e.target.name.value;
         const termsAccepted = e.target.terms.checked;
         console.log(email, password, termsAccepted);
         //reset error
@@ -42,10 +43,31 @@ const Register = () => {
         .then(result =>{
             const newUser = result.user;
             setRegisterSuccess('You have registered successfully!');
-            console.log(newUser);
+            // console.log(newUser);
+
+            // update profile 
+            updateProfile(newUser,{
+                displayName: {name},
+                photoURL: result.photoURL
+            })
+            .then(() => {
+                console.log('Profile updated!')
+            })
+            .catch(error =>{
+                console.log(error.message);
+            })
+
+            //send verification email
+            sendEmailVerification(newUser)
+            .then(()=>{
+                alert('Please check your email and verify the account!');
+            })
+            .catch(error =>{
+                setRegisterError(error.message);
+            })
         })
         .catch(error =>{
-            console.log(error);
+            // console.log(error);
             //set error
             setRegisterError(error.message);
         })
@@ -55,7 +77,7 @@ const Register = () => {
             <div className="hero py-10 w-3/4 mx-auto">
                 <div className="hero-content flex flex-col-reverse">
                     <div className="text-center lg:text-bottom">
-                        <p>Already have account? 
+                        <p>Already have an account? 
                         <Link to='/login' className=" text-[#db2777] font-semibold"> Login</Link></p>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -64,6 +86,12 @@ const Register = () => {
                             <h1 className="text-3xl bg- font-bold text-[#db2777]">Register now</h1>
                         </div>
                         <form onSubmit={handleRegister}>
+                            <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input type="text" name="name" placeholder="Your name" className="input input-bordered" required/>
+                            </div>
                             <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>

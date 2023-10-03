@@ -1,24 +1,24 @@
 import PropTypes from 'prop-types';
 import { Rating } from '@mui/material';
 
-const FavoriteCard = ({phone,handleRemoveOneFromFavorite,handleRemoveFromFavorite}) => {
+const FavoriteCard = ({phone,setFavorites,setTotalPrice,totalPrice,setNoFound}) => {
     //destructuring phone object
-    const {id, phone_name, brand_name, image, price, rating} = phone || {}
+    const {id, phone_name, brand_name, image, price, rating} = phone || {};
+
     //fucntion to remove one item from local storage
     const handleRemoveOneFromLC=()=>{
-        const allItems = JSON.parse(localStorage.getItem('favItems'))
-        const selectedItems = allItems.filter(item => item.id !== id);
-        console.log(allItems);
-        console.log(selectedItems);
-        //replace key value pair in local stoarge
-        if(selectedItems.length > 0){
-            localStorage.setItem('favItems', JSON.stringify(selectedItems));
+        const allItems = JSON.parse(localStorage.getItem('favItems'));
+        // console.log(allItems);
+        
+        const total = totalPrice - price; 
+        setTotalPrice(total.toFixed(2));
+        const selectedItem = allItems.filter(item => item.id !== id);
+        // console.log(selectedItem);
+        localStorage.setItem('favItems',JSON.stringify(selectedItem));
+        setFavorites(selectedItem);
+        if(selectedItem.length == 0){
+            setNoFound('No Product Found!')
         }
-        else{
-            localStorage.clear();
-        }
-        handleRemoveOneFromFavorite;
-        handleRemoveFromFavorite;
     }
     
     return (
@@ -74,7 +74,9 @@ const FavoriteCard = ({phone,handleRemoveOneFromFavorite,handleRemoveFromFavorit
 //Adding props
 FavoriteCard.propTypes = {
     phone: PropTypes.object.isRequired,
-    handleRemoveOneFromFavorite: PropTypes.func.isRequired,
-    handleRemoveFromFavorite: PropTypes.func.isRequired
+    setFavorites: PropTypes.func.isRequired,
+    setTotalPrice: PropTypes.func.isRequired,
+    totalPrice: PropTypes.func.isRequired,
+    setNoFound: PropTypes.func.isRequired,
 }
 export default FavoriteCard;

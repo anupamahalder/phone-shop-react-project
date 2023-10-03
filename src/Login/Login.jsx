@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
 
 const Login = () => {
@@ -11,6 +11,8 @@ const Login = () => {
     const [loginError, setLoginError] = useState('');
     // declare a state to store success 
     const [loginSuccess, setLoginSuccess] = useState('');
+    // get a ref of email and initialize with null 
+    const emailRef = useRef(null);
 
     //function to handle login
     const handleLogin = e =>{
@@ -27,7 +29,37 @@ const Login = () => {
         .then(result =>{
             const prevUser = result.user;
             console.log(prevUser);
+            // if user does not verify account through verification email 
+            if(!prevUser.emailVerified){
+                alert('Please verify your email address!');
+                //we can also call the verification mail here
+                return;
+            }
             setLoginSuccess('You have successfully logged in!');
+        })
+        .catch(error =>{
+            setLoginError(error.message);
+        })
+    }
+    // function to handle reset password
+    const handleResetPassword = () =>{
+        const email = emailRef.current.value;
+        if(!email){
+            alert("Please provide an email!");
+            console.log('Please provide an email!');
+            return;
+        }
+        else if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)){
+            alert('Please provide correct email!');
+            return;
+        }
+        
+        // console.log('send reset email', email);
+
+        // send validation email 
+        sendPasswordResetEmail(auth, email)
+        .then(()=>{
+            alert('Check your email!');
         })
         .catch(error =>{
             setLoginError(error.message);
@@ -38,7 +70,7 @@ const Login = () => {
             <div className="hero py-10 w-3/4 mx-auto">
                 <div className="hero-content flex flex-col-reverse">
                     <div className="text-center lg:text-bottom">
-                        <p>Already have account? 
+                        <p>Do not have account? 
                         <Link to='/register' className=" text-[#db2777] font-semibold"> Register</Link></p>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -51,7 +83,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" name="email" placeholder="email" className="input input-bordered" required/>
+                            <input type="email" ref={emailRef} name="email" placeholder="email" className="input input-bordered" required/>
                             </div>
                             <div className="form-control">
                             <label className="label">
@@ -69,7 +101,7 @@ const Login = () => {
                                 <label htmlFor="terms" className="text-xs mt-1 text-blue-900"> Accept our Terms & Conditions</label>
                             </div> */}
                             <label className="label">
-                                <Link to="#" className="label-text-alt link link-hover">Forgot password?</Link>
+                                <Link onClick={handleResetPassword} className="label-text-alt link link-hover">Forgot password?</Link>
                             </label>
                             </div>
                             <div className="form-control mt-4">
