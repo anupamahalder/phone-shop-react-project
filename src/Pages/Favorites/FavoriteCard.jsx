@@ -16,7 +16,7 @@ const FavoriteCard = ({phone,setFavorites,setTotalPrice,totalPrice,setNoFound}) 
         // console.log(selectedItem);
         localStorage.setItem('favItems',JSON.stringify(selectedItem));
         setFavorites(selectedItem);
-        if(selectedItem.length == 0){
+        if(selectedItem?.length === 0){
             setNoFound('No Product Found!')
         }
     }

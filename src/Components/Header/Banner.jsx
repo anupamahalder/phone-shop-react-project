@@ -11,7 +11,7 @@ const Banner = ({setSearchBtnClicked}) => {
     }
     return (
         <div className="h-[60vh]">
-            <img className="h-[60vh] bg-no-repeat brightness-50 w-full object-cover object-center" src='../../../public/banner.jpg'></img>
+            <img className="h-[60vh] bg-no-repeat brightness-50 w-full object-cover object-center" src='/banner.jpg'></img>
             <div className="h-[60vh] w-full mx-auto flex justify-center items-center absolute top-24">
                 <div className=" flex justify-center items-center gap-2 mx-auto">
                     <input onChange={handleInputItem}

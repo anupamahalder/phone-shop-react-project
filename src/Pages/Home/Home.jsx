@@ -5,7 +5,7 @@ import { useState } from "react";
 const Home = () => {
     // declare a state to get the value that user is searching for
     const [searchBtnClicked, setSearchBtnClicked] = useState(null);
-    console.log("Inside home ",searchBtnClicked);
+    // console.log("Inside home ",searchBtnClicked);
     //getting the data by calling useLoaderData() hook
     const phones = useLoaderData();
     // console.log(phones);

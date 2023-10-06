@@ -5,7 +5,7 @@ const Favorites = () => {
     //declare a state where we will store the phone's data 
     const [favorites, setFavorites] = useState([]);
     //declare a state to show no data found when local storage is empty
-    const [noFound, setNoFound] = useState(false)
+    const [noFound, setNoFound] = useState("")
     //we will declare a state for see all button if clicked the true will become false else false become true the value will be maintained by the state
     const [isShowAll, setIsShowAll] = useState(false);
 
@@ -15,8 +15,10 @@ const Favorites = () => {
     //there can be side effect while getting things from browser so we will use useEffect
     useEffect(() => {
         const favoriteItems = JSON.parse(localStorage.getItem('favItems'));
-        if(favoriteItems.length === 0){
-            setNoFound('No Product Found!');
+        console.log('fav---->',favoriteItems);
+        if(favoriteItems?.length===0){
+            console.log('hi from length 0')
+;            setNoFound('No Product Found!');
             return;
         }
         //set to favorites if favorite items exist
@@ -26,6 +28,9 @@ const Favorites = () => {
             const total = favoriteItems.reduce((prevalue, currentItem) => prevalue+currentItem.price, 0);
             // console.log(total);
             setTotalPrice(total.toFixed(2));
+        }
+        else{
+            setNoFound('No Product Found!');
         }
     },[])
 
@@ -41,7 +46,7 @@ const Favorites = () => {
     return (
         <>
         {/* if the length of favorites are greater than 0 then show a delete btn */}
-        <div>
+        <div className="min-h-screen">
         <div>
             {favorites.length > 0 && <button onClick={handleRemoveFromFavorite}
             className="block w-40 mx-auto my-5 select-none rounded-lg bg-pink-500 py-3 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] text-white disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
@@ -67,7 +72,7 @@ const Favorites = () => {
             }
             {/* when clicked the button we will change the value of the state using arraow function to set the state*/}
             {
-                favorites.length > 3 ? <button onClick={() => setIsShowAll(!isShowAll)}
+                favorites?.length > 3 ? <button onClick={() => setIsShowAll(!isShowAll)}
                 className="block w-40 mx-auto my-5 select-none rounded-lg bg-pink-500 py-3 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] text-white disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 type="button">
                     {isShowAll ? "See Less" : "See More"}

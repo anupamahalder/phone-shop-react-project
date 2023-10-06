@@ -9,14 +9,17 @@ const Phones = ({phones, searchBtnClicked}) => {
                 matchedItem.push(phone);
             }
     }
-    console.log(matchedItem);
+    // console.log(matchedItem);
     return (
         <div className='bg-gray-50 py-10 mx-auto'>
             <h1 className="text-2xl text-gray-900 font-bold text-center pb-7">All categories phones</h1>
             <div className='mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 px-4'>
                 {/* Loop through the the phones array  */}
                 {
-                    matchedItem.length === 0 ? <p>No search item founds</p> :(
+                    !searchBtnClicked &&  phones?.map(phone => <PhoneCard key={phone.id} phone={phone}></PhoneCard>)
+                }
+                {
+                    searchBtnClicked && matchedItem.length === 0 ? <p>No search item founds</p> :(
                     searchBtnClicked ? matchedItem?.map(phone => <PhoneCard key={phone.id} phone={phone}></PhoneCard>)
                     : 
                     (phones?.map(phone => <PhoneCard key={phone.id} phone={phone}></PhoneCard>)))
@@ -30,6 +33,6 @@ const Phones = ({phones, searchBtnClicked}) => {
 //Adding proptypes
 Phones.propTypes = {
     phones: PropType.array.isRequired,
-    searchBtnClicked: PropType.string.isRequired,
+    searchBtnClicked: PropType.string,
 }
 export default Phones;
