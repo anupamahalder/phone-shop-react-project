@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import PropTypes from 'prop-types';
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 const PrivateRoute = ({children}) => {
+    const location = useLocation();
     // if user not null then allow to go inside so first we need user info 
     const {user,loading} = useContext(AuthContext);
     // if loading state is true then return a spinner 
@@ -14,7 +15,7 @@ const PrivateRoute = ({children}) => {
         return children;
     }
     // if user is not valid then navigate to login page 
-    return <Navigate to='/login'></Navigate>
+    return <Navigate state={location.pathname} to='/login'></Navigate>
 };
 // adding proptypes 
 PrivateRoute.propTypes = {

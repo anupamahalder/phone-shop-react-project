@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
 import { sendPasswordResetEmail } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
@@ -8,6 +8,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 
 
 const Login = () => {
+    const location = useLocation();
     const {signInUser,signInWithGoogle} = useContext(AuthContext);
     // to naviagate call useNavigate hook 
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ const Login = () => {
             // reset input field 
             e.target.reset();
             // we can naviagate and send to anywhere after successful login
-            navigate('/');
+            navigate(location?.state ? location.state : '/');
         })
         .catch(error =>{
             swal("Sorry!","You have failed to login!","error");
