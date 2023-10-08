@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../Firebase/firebase.config";
 import { useContext, useState } from "react";
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
@@ -8,6 +8,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Register = () => {
 
+    const navigate = useNavigate();
     // get info from context api 
     const authInfo = useContext(AuthContext);
     // destructure 
@@ -31,6 +32,7 @@ const Register = () => {
         .then(result =>{
             swal("Good job!","You have successfully register!","success");
             console.log(result.user);
+            navigate('/');
         })
         .catch(error =>{
             swal("Sorry!","Check your password/email and correct it!","error");

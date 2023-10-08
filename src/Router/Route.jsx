@@ -45,7 +45,7 @@ const myCreatedRoute = createBrowserRouter([
                 // for showing each phone
                 path: `/phones/:id`,
                 // showing phones detail in a page named phone 
-                element: <Phone></Phone>,
+                element: <PrivateRoute><Phone></Phone></PrivateRoute>,
                 // As there is no API to fetch data we will not use loader instead we will use useParams in the <phone> component to get the data or id 
                 loader: () => fetch('/phones_data.json')
             }
