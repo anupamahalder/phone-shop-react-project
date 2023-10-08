@@ -35,7 +35,7 @@ const Phones = ({phones, searchBtnClicked}) => {
                 
             </div>
                 {
-                    <div className='flex justify-center mx-auto'>
+                    searchBtnClicked || <div className='flex justify-center mx-auto'>
                     <button onClick={()=>setShowAll(!showAll)}
                      className='text-center bg-gray-200 font-semibold text-pink-600 rounded-lg py-3 px-3'>{
                         dataLength < phones.length  && showAll ?  "See All" : "See Less"

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet-async';
 import swal from 'sweetalert';
 // import { Link } from 'react-router-dom';
 
@@ -53,7 +54,10 @@ const PhoneCardCompo = ({phone}) => {
 
     return (
         <div>
-            <div className="relative flex w-full max-w-[48rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md py-6">
+            <Helmet>
+                <title>Phone Shop | Phone Id: {id}</title>
+            </Helmet>
+            <div className="relative md:flex w-full max-w-[48rem] md:flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md py-6">
                 <div className="relative h-[300px] w-60 mx-auto shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
                     <img
                     src={image}
@@ -95,12 +99,7 @@ const PhoneCardCompo = ({phone}) => {
                         ></path>
                         </svg>
                     </button>
-                    {/* <Link to='../'>
-                        <button
-                        className="block w-40 mt-5 select-none rounded-lg bg-[#ec4899] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] text-white disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                        type="button"
-                        >Go to Home</button>
-                    </Link> */}
+                    
                 </div>
                 </div>
         </div>
