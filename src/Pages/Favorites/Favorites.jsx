@@ -15,12 +15,7 @@ const Favorites = () => {
     //there can be side effect while getting things from browser so we will use useEffect
     useEffect(() => {
         const favoriteItems = JSON.parse(localStorage.getItem('favItems'));
-        console.log('fav---->',favoriteItems);
-        if(favoriteItems?.length===0){
-            console.log('hi from length 0')
-;            setNoFound('No Product Found!');
-            return;
-        }
+
         //set to favorites if favorite items exist
         if(favoriteItems){
             setFavorites(favoriteItems);

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import auth from "../Firebase/firebase.config";
 import { useState } from "react";
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
+import swal from 'sweetalert';
+
 const Register = () => {
     //if there is any error like email already is in use
     const [registerError, setRegisterError] = useState('');
@@ -42,6 +44,7 @@ const Register = () => {
         // then means success
         .then(result =>{
             const newUser = result.user;
+            swal("Good job!", "You logged in successfully!", "success");
             setRegisterSuccess('You have registered successfully!');
             // console.log(newUser);
 
@@ -58,13 +61,13 @@ const Register = () => {
             })
 
             //send verification email
-            sendEmailVerification(newUser)
-            .then(()=>{
-                alert('Please check your email and verify the account!');
-            })
-            .catch(error =>{
-                setRegisterError(error.message);
-            })
+            // sendEmailVerification(newUser)
+            // .then(()=>{
+            //     alert('Please check your email and verify the account!');
+            // })
+            // .catch(error =>{
+            //     setRegisterError(error.message);
+            // })
         })
         .catch(error =>{
             // console.log(error);

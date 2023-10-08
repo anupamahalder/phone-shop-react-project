@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
+import swal from 'sweetalert';
+
 
 const Login = () => {
     // declare a state to handle show password 
@@ -35,9 +37,11 @@ const Login = () => {
                 //we can also call the verification mail here
                 return;
             }
+            swal("Good job!", "You logged in successfully!", "success");
             setLoginSuccess('You have successfully logged in!');
         })
         .catch(error =>{
+            swal("Sorry!", "You login information is invalid", "error");
             setLoginError(error.message);
         })
     }
