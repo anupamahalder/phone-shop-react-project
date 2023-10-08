@@ -7,22 +7,28 @@ export const AuthContext = createContext(null);
 
 const AuthProvider = ({children}) => {
 
+    // declare a state initial value is true
+    const [loading, setLoading] = useState(true);
     // declare a state to hold user info 
     const [user, setUser] = useState(null);
 
     const createUser = (email,password) =>{
         // this function requires two parameter which will come whoever call createUser function 
+        setLoading(true);
         return createUserWithEmailAndPassword(auth,email,password);
     }
 
     //for login
     const signInUser = (email,password) =>{
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email,password);
     }
     
     //set an observer 
     useEffect (()=>{
         const unSubscribe = onAuthStateChanged(auth, currentUser =>{
+            // loading will be false when we will set user to the state 
+            setLoading(false);
             setUser(currentUser);
             console.log("Current Value of the current user ",currentUser);
         })
@@ -34,6 +40,7 @@ const AuthProvider = ({children}) => {
 
     //for log out/sign out
     const logOutUser = () =>{
+        setLoading(true);
         return signOut(auth);
     }
     //share user info with other component
@@ -42,6 +49,7 @@ const AuthProvider = ({children}) => {
         createUser,
         signInUser,
         logOutUser,
+        loading,
     }
 
     return (

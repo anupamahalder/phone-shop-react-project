@@ -6,6 +6,7 @@ import Login from "../Login/Login";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Phone from "../Pages/Phone/Phone";
 import Register from "../Register/Register";
+import PrivateRoute from "./PrivateRoute";
 //The createBrowserRouter function takes array of object
 const myCreatedRoute = createBrowserRouter([
     //Each object mainly takes two things path and element
@@ -27,7 +28,9 @@ const myCreatedRoute = createBrowserRouter([
             },
             {
                 path: '/favorites',
-                element: <Favorites></Favorites>
+                element: <PrivateRoute>
+                    <Favorites></Favorites>
+                </PrivateRoute>
             },
             {
                 path: '/login',
