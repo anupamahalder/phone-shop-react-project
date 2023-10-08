@@ -54,9 +54,6 @@ const PhoneCardCompo = ({phone}) => {
 
     return (
         <div>
-            <Helmet>
-                <title>Phone Shop | Phone Id: {id}</title>
-            </Helmet>
             <div className="relative md:flex w-full max-w-[48rem] md:flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md py-6">
                 <div className="relative h-[300px] w-60 mx-auto shrink-0 overflow-hidden rounded-xl rounded-r-none bg-white bg-clip-border text-gray-700">
                     <img
