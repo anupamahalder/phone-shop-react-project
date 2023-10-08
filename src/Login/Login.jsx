@@ -8,7 +8,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 
 
 const Login = () => {
-    const {signInUser} = useContext(AuthContext);
+    const {signInUser,signInWithGoogle} = useContext(AuthContext);
     // to naviagate call useNavigate hook 
     const navigate = useNavigate();
     // declare a state to handle show password 
@@ -41,6 +41,16 @@ const Login = () => {
             console.log(error.message);
         })
         
+    }
+    const handleGoogleSignIn=()=>{
+        signInWithGoogle()
+        .then(result =>{
+            console.log(result.user);
+            navigate('/');
+        })
+        .catch(error =>{
+            console.log(error.message);
+        })
     }
     // function to handle reset password
     const handleResetPassword = () =>{
@@ -106,7 +116,7 @@ const Login = () => {
                             </label>
                             </div>
                             <div className="form-control mt-4">
-                            <button className="py-3 font-semibold rounded-xl bg-[#db2777] text-white hover:bg-pink-700">Login</button>
+                            <button className="py-3 font-semibold rounded-md bg-[#db2777] text-white hover:bg-pink-700">Login</button>
                             </div>
                         </form>
                         {/* showing error if any error occured */}
@@ -118,6 +128,9 @@ const Login = () => {
                             loginSuccess && <p className="text-green-600 pt-2">{loginSuccess}</p>
                         }
                     </div>
+                    <button onClick={handleGoogleSignIn} 
+                    className="btn rounded-md -mt-2 mb-5 mx-8 bg-slate-300">Login With Google</button>
+
                     </div>
                 </div>
                 </div>
