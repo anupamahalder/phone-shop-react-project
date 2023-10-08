@@ -1,2 +1,2 @@
 # Phone Shop React Project
-<h3>Live Link: </h3> https://652290595f88891dbb583fe1--deluxe-klepon-68363a.netlify.app/
+<h3>Live Link: </h3> https://6522af3bc7311132f3bd807d--fabulous-frangollo-0b3707.netlify.app/
