@@ -1,79 +1,41 @@
 import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
 import { Link } from "react-router-dom";
 import auth from "../Firebase/firebase.config";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
 import swal from 'sweetalert';
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Register = () => {
+
+    const authInfo = useContext(AuthContext);
+    // destructure authInfo 
+    const {createUser} = authInfo;
+
     //if there is any error like email already is in use
     const [registerError, setRegisterError] = useState('');
     //declare state to show success message
     const [registerSuccess, setRegisterSuccess] = useState('');
     //declare a state to toggle between show and hide password by default hidden 
     const [showPassword, setShowPassword] = useState(false);
+
     //function handleRegister
     const handleRegister = e =>{
-        e.preventDefault();//to avoid reloading
-        console.log('form submitted!');
+        e.preventDefault();
+        const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const name = e.target.name.value;
-        const termsAccepted = e.target.terms.checked;
-        console.log(email, password, termsAccepted);
-        //reset error
-        setRegisterError('');
-        //reset success
-        setRegisterSuccess('');
 
-        //by default password is string so we can validate that given string is less than 6 or not
-        if(password.length < 6){
-            setRegisterError("Password should be at least 6 characters!");
-            return;
-        }
-        else if(!/[A-Z]/.test(password)){
-            setRegisterError('Password should have atleast one UPPER CASE character!');
-            return;
-        }
-        else if(!termsAccepted){ //if terms not accepted then do not allow to register
-            setRegisterError('Please accept our terms and conditions!');
-            return;
-        }
-        //create user, it a promise so then and catch
-        createUserWithEmailAndPassword(auth,email,password)
-        // then means success
-        .then(result =>{
-            const newUser = result.user;
-            swal("Good job!", "You logged in successfully!", "success");
-            setRegisterSuccess('You have registered successfully!');
-            // console.log(newUser);
-
-            // update profile 
-            updateProfile(newUser,{
-                displayName: {name},
-                photoURL: result.photoURL
-            })
-            .then(() => {
-                console.log('Profile updated!')
-            })
-            .catch(error =>{
-                console.log(error.message);
-            })
-
-            //send verification email
-            // sendEmailVerification(newUser)
-            // .then(()=>{
-            //     alert('Please check your email and verify the account!');
-            // })
-            // .catch(error =>{
-            //     setRegisterError(error.message);
-            // })
+        // create user in firebase 
+        createUser(email,password)
+        .then(result => {
+            console.log(result.user);
+            swal("Good job","You have successfully logged in!","success");
         })
-        .catch(error =>{
-            // console.log(error);
-            //set error
-            setRegisterError(error.message);
-        })
+        .catch(error => {
+            console.log(error.message);
+            swal("Sorry!","This email is already in used!","error");
+        });
     }
     return (
         <div className="bg-base-200 min-h-screen">
