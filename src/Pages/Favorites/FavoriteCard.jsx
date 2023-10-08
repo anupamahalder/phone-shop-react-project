@@ -23,6 +23,7 @@ const FavoriteCard = ({phone,setFavorites,setTotalPrice,totalPrice,setNoFound}) 
     
     return (
         <div className='mx-auto p-6'>
+            
             <div className="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
                 <div className="relative h-[300px] w-60 mx-auto py-3 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
                     <img

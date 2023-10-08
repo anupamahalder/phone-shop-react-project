@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import FavoriteCard from "./FavoriteCard";
+import { Helmet } from "react-helmet-async";
 
 const Favorites = () => {
     //declare a state where we will store the phone's data 
@@ -40,6 +41,9 @@ const Favorites = () => {
     }
     return (
         <>
+        <Helmet>
+            <title>Phone Shop | Favorites</title>
+        </Helmet>
         {/* if the length of favorites are greater than 0 then show a delete btn */}
         <div className="min-h-screen">
         <div>

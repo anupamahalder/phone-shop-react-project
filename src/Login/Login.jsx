@@ -5,6 +5,7 @@ import { sendPasswordResetEmail } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
 import swal from 'sweetalert';
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
@@ -79,6 +80,9 @@ const Login = () => {
     }
     return (
         <div className="bg-base-200 min-h-screen">
+            <Helmet>
+                <title>Phone Shop | Login</title>
+            </Helmet>
             <div className="hero py-10 w-3/4 mx-auto">
                 <div className="hero-content flex flex-col-reverse">
                     <div className="text-center lg:text-bottom">

@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Banner from "../../Components/Header/Banner";
 import Phones from "../../Components/Phones/Phones";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 const Home = () => {
     // declare a state to get the value that user is searching for
     const [searchBtnClicked, setSearchBtnClicked] = useState(null);
@@ -11,6 +12,9 @@ const Home = () => {
     // console.log(phones);
     return (
         <div>
+            <Helmet>
+                <title>Phone Shop | Home</title>
+            </Helmet>
             <Banner setSearchBtnClicked={setSearchBtnClicked}></Banner>
             {/* loading data in home and sending phones data as prop to phones component  */}
             {

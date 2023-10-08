@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { useState } from "react";
 import PhoneCardCompo from "./PhoneCardCompo";
+import { Helmet } from "react-helmet-async";
 
 const Phone = () => {
     //declare a state to store only one phone
@@ -27,6 +28,9 @@ const Phone = () => {
     // console.log(phone);
     return (
         <div className="h-[80vh] py-10 flex justify-center items-center mx-auto">
+            <Helmet>
+                <title>Phone Shop | Phone: {id}</title>
+            </Helmet>
             {/* <button onClick={() => setIsTrue(!isTrue)}>Hello btn</button> */}
             <PhoneCardCompo key={phone.id} phone={phone}></PhoneCardCompo>
         </div>
