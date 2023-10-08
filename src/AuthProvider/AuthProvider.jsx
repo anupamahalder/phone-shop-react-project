@@ -37,7 +37,7 @@ const AuthProvider = ({children}) => {
             // loading will be false when we will set user to the state 
             setLoading(false);
             setUser(currentUser);
-            console.log("Current Value of the current user ",currentUser);
+            // console.log("Current Value of the current user ",currentUser);
         })
         
         return () =>{
