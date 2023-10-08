@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
-import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { sendPasswordResetEmail } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
 import swal from 'sweetalert';
 import { AuthContext } from "../AuthProvider/AuthProvider";
@@ -9,6 +9,8 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Login = () => {
     const {signInUser} = useContext(AuthContext);
+    // to naviagate call useNavigate hook 
+    const navigate = useNavigate();
     // declare a state to handle show password 
     const [showPassword, setShowPassword] = useState(false);
     // declare a state to get error 
@@ -29,6 +31,10 @@ const Login = () => {
         .then(result =>{
             swal("Good job!","You have successfully login!","success");
             console.log(result.user);
+            // reset input field 
+            e.target.reset();
+            // we can naviagate and send to anywhere after successful login
+            navigate('/');
         })
         .catch(error =>{
             swal("Sorry!","You have failed to login!","error");
