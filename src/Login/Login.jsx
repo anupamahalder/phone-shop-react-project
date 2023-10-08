@@ -1,12 +1,14 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
 import swal from 'sweetalert';
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 
 const Login = () => {
+    const {signInUser} = useContext(AuthContext);
     // declare a state to handle show password 
     const [showPassword, setShowPassword] = useState(false);
     // declare a state to get error 
@@ -21,29 +23,18 @@ const Login = () => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(email,password);
-        //clear state value 
-        setLoginError('');
-        setLoginSuccess('');
-        // add validation 
-        //go to firebase 
-        signInWithEmailAndPassword(auth,email,password)
+
+        // for login 
+        signInUser(email,password)
         .then(result =>{
-            const prevUser = result.user;
-            console.log(prevUser);
-            // if user does not verify account through verification email 
-            if(!prevUser.emailVerified){
-                alert('Please verify your email address!');
-                //we can also call the verification mail here
-                return;
-            }
-            swal("Good job!", "You logged in successfully!", "success");
-            setLoginSuccess('You have successfully logged in!');
+            swal("Good job!","You have successfully login!","success");
+            console.log(result.user);
         })
         .catch(error =>{
-            swal("Sorry!", "You login information is invalid", "error");
-            setLoginError(error.message);
+            swal("Sorry!","You have failed to login!","error");
+            console.log(error.message);
         })
+        
     }
     // function to handle reset password
     const handleResetPassword = () =>{
